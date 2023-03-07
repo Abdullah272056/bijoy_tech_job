@@ -9,7 +9,7 @@ showToastShort(String message) {
       toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.CENTER,
       timeInSecForIosWeb: 1,
-      backgroundColor: fnf_color,
+      backgroundColor: bgColor,
       textColor: Colors.white,
       fontSize: 16.0);
 }
@@ -20,7 +20,7 @@ showToastLong(String message) {
       toastLength: Toast.LENGTH_LONG,
       gravity: ToastGravity.CENTER,
       timeInSecForIosWeb: 1,
-      backgroundColor: fnf_color,
+      backgroundColor: bgColor,
       textColor: Colors.white,
       fontSize: 16.0);
 }

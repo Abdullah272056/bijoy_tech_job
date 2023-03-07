@@ -28,8 +28,8 @@ void showLoadingDialog(String message) {
                   width: 45,
                   margin: EdgeInsets.only(top: 10),
                   child: CircularProgressIndicator(
-                    backgroundColor: awsStartColor,
-                    color: awsEndColor,
+                    backgroundColor: Colors.green,
+                    color: Colors.black,
                     strokeWidth: 6,
                   ),
                 ),

@@ -13,7 +13,7 @@ void showLoginWarning( ) {
 
   Get.defaultDialog(
       contentPadding: EdgeInsets.zero,
-      backgroundColor: bottom_bg_color,
+      backgroundColor: bgColor,
       //  title: '',
       titleStyle: TextStyle(fontSize: 0),
       // backgroundColor: Colors.white.withOpacity(.8),
@@ -92,10 +92,7 @@ void showLoginWarning( ) {
                             child: Ink(
 
                               decoration: BoxDecoration(
-                                  gradient: LinearGradient(colors: [sohojatri_color, sohojatri_color],
-                                    begin: Alignment.centerLeft,
-                                    end: Alignment.centerRight,
-                                  ),
+                                  color: Colors.blue,
                                   borderRadius: BorderRadius.circular(7.0)
                               ),
                               child: Container(
@@ -139,7 +136,7 @@ void showLoginWarning( ) {
                                   fontFamily: 'PT-Sans',
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,
-                                  color: sohojatri_color,
+                                  color: Colors.blue,
                                 ),
                               ),
                             ),

@@ -1,4 +1,6 @@
 
+import 'package:bijoy_tech_job/view/search_job_page.dart';
+import 'package:bijoy_tech_job/view/splash_screen/splash_screen1.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get_storage/get_storage.dart';
@@ -17,7 +19,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  GetMaterialApp(
-      //  home: DashBoardPageScreen()
+       home:SearchJobScreenPage()
+
+       // DashBoardPageScreen()
     );
   }
 
