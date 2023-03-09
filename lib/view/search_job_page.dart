@@ -8,9 +8,6 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../static/Colors.dart';
 import '../controller/search_job_page_controller.dart';
 
-
-
-
 class SearchJobScreenPage extends StatelessWidget {
   final searchJobPageController = Get.put(SearchJobPageController());
   var width;
@@ -32,105 +29,119 @@ class SearchJobScreenPage extends StatelessWidget {
                 // mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Expanded(
-                      child:Container(
-                          color: bgColor,
-                          padding: EdgeInsets.only(left: 15,right: 15,top: 10,bottom: 20),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Expanded(child:
+                      child:Stack(
+                        alignment: Alignment.bottomCenter,
+                        children: [
+                          Container(
+                              color: bgColor,
+                              padding: EdgeInsets.only(left: 15,right: 15,top: 10,bottom: 20),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Expanded(child:
 
 
-                              CustomScrollView(
-                                slivers: [
-                                  SliverFillRemaining(
-                                    hasScrollBody: false,
-                                    child:  Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-
-                                      children: [
-
-                                        Expanded(child: Column(
+                                  CustomScrollView(
+                                    slivers: [
+                                      SliverFillRemaining(
+                                        hasScrollBody: false,
+                                        child:  Column(
                                           mainAxisAlignment: MainAxisAlignment.start,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+
                                           children: [
-                                            SizedBox(height: 10,),
-                                            Row(
 
-
+                                            Expanded(child: Column(
+                                              mainAxisAlignment: MainAxisAlignment.start,
                                               children: [
-                                                Expanded(child: Container()),
-                                                Container(
+                                                SizedBox(height: 10,),
+                                                Row(
+
+
+                                                  children: [
+                                                    Expanded(child: Container()),
+                                                    Container(
+                                                        color:bgColor,
+                                                        padding: EdgeInsets.only(left: 5,right: 5,bottom: 30),
+                                                        child: InkWell(
+                                                          onTap: (){
+                                                            showToastShort("asdf");
+                                                          },
+                                                          child: Image.asset(
+                                                            "assets/images/icon_profile_user.png",
+                                                            width: 25,
+                                                            height: 25,
+                                                            color: buttonBgColor,
+                                                            fit: BoxFit.fill,
+                                                          ),
+                                                        )
+                                                    )
+                                                  ],
+
+                                                ),
+
+
+                                                Row(
+                                                  children: [Container(
                                                     color:bgColor,
                                                     padding: EdgeInsets.only(left: 5,right: 5,bottom: 30),
-                                                    child: InkWell(
-                                                      onTap: (){
-                                                        showToastShort("asdf");
-                                                      },
-                                                      child: Image.asset(
-                                                        "assets/images/icon_profile_user.png",
-                                                        width: 25,
-                                                        height: 25,
+                                                    child: Text(
+                                                      "Search Job",
+                                                      textAlign: TextAlign.center,
+                                                      style: TextStyle(
+                                                        fontFamily: 'PT-Sans',
+                                                        fontSize: 25,
+                                                        fontWeight: FontWeight.normal,
                                                         color: buttonBgColor,
-                                                        fit: BoxFit.fill,
                                                       ),
-                                                    )
-                                                )
+                                                    ),
+                                                  ),],
+                                                ),
+
+                                                userInput(
+                                                  userInputController: searchJobPageController.userNameController.value,
+                                                  hintTitle: 'Job Title', keyboardType:TextInputType.text,
+                                                  //  iconData: Icons.person
+                                                ),
+
+                                                const SizedBox(height: 10,),
+                                                _buildLocationInput(),
+                                                const SizedBox(height: 16,),
+                                                _buildCategoriesInput(),
+
+                                                const SizedBox(height: 35,),
+                                                _buildSearchButton(),
+                                                SizedBox(height: 10,),
+                                                _buildViewHotJobsButton(),
+
                                               ],
 
-                                            ),
 
 
-                                            Row(
-                                              children: [Container(
-                                                color:bgColor,
-                                                padding: EdgeInsets.only(left: 5,right: 5,bottom: 30),
-                                                child: Text(
-                                                  "Search Job",
-                                                  textAlign: TextAlign.center,
-                                                  style: TextStyle(
-                                                    fontFamily: 'PT-Sans',
-                                                    fontSize: 25,
-                                                    fontWeight: FontWeight.normal,
-                                                    color: buttonBgColor,
-                                                  ),
-                                                ),
-                                              ),],
-                                            ),
-
-                                            userInput(
-                                              userInputController: searchJobPageController.userNameController.value,
-                                              hintTitle: 'Job Title', keyboardType:TextInputType.text,
-                                              //  iconData: Icons.person
-                                            ),
-
-                                            const SizedBox(height: 10,),
-                                            _buildLocationInput(),
-                                            const SizedBox(height: 16,),
-                                            _buildCategoriesInput(),
-
-                                            const SizedBox(height: 35,),
-                                            _buildSearchButton(),
-                                            SizedBox(height: 10,),
-                                            _buildViewHotJobsButton(),
+                                            ),)
 
                                           ],
+                                        ),
+                                      ),
+                                    ],
+                                  )
 
-
-
-                                        ),)
-
-                                      ],
-                                    ),
                                   ),
+
+
                                 ],
                               )
+                          ),
+                          Positioned(
+                              child: Image.asset(
+                            "assets/images/bg_image.png",
 
-                              ),
-
-
-                            ],
-                          )
+                          //  width: 25,
+                          //  height: 105,
+                          //   color: buttonBgColor,
+                            fit: BoxFit.fill,
+                          ))
+                        ],
                       )
 
 
@@ -566,7 +577,6 @@ class SearchJobScreenPage extends StatelessWidget {
       ),
     );
   }
-
 
 
 
