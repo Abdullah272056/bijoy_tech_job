@@ -1,13 +1,24 @@
 
+import 'package:bijoy_tech_job/static/Colors.dart';
+import 'package:bijoy_tech_job/view/auth/functional_categories_page.dart';
+import 'package:bijoy_tech_job/view/auth/functional_categories_page1.dart';
+import 'package:bijoy_tech_job/view/auth/functional_categories_page2.dart';
+import 'package:bijoy_tech_job/view/auth/registration_type_select_page.dart';
+
+
 import 'package:bijoy_tech_job/view/search_job_page.dart';
 import 'package:bijoy_tech_job/view/splash_screen/splash_screen1.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get_storage/get_storage.dart';
 
 
 Future<void> main() async {
-
+  SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+      statusBarColor: buttonBgColor
+  ));
   await GetStorage.init();
   runApp( MyApp());
 
@@ -19,7 +30,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  GetMaterialApp(
-       home:SearchJobScreenPage()
+        debugShowCheckedModeBanner: false,
+       home:FunctionalCategoriesRegistrationScreenPage2()
 
        // DashBoardPageScreen()
     );

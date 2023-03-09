@@ -6,8 +6,12 @@ class Assets {
   static const String imagesFireIcon = 'assets/images/fire_icon.png';
   static const String imagesIconCancel = 'assets/images/icon_cancel.png';
   static const String imagesIconCross = 'assets/images/icon_cross.png';
+  static const String imagesIconFacebook = 'assets/images/icon_facebook.png';
+  static const String imagesIconGoogle = 'assets/images/icon_google.png';
   static const String imagesIconProfileUser = 'assets/images/icon_profile_user.png';
   static const String imagesIconStoragePermission = 'assets/images/icon_storage_permission.png';
   static const String imagesIconStoragePermisson = 'assets/images/icon_storage_permisson.png';
+  static const String imagesIconWorker = 'assets/images/icon_worker.png';
+  static const String imagesPcImage = 'assets/images/pc_image.png';
 
 }
