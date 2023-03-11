@@ -9,15 +9,18 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../controller/functional_registration_page_controller.dart';
 import '../../controller/functional_registration_page_controller1.dart';
+import '../../controller/functional_registration_page_controller2.dart';
+import '../../controller/functional_registration_page_controller3.dart';
 import '../../controller/login_page_controller.dart';
 import '../../controller/registration_type_select_page_controller.dart';
 import '../../static/Colors.dart';
 
-class FunctionalCategoriesRegistrationScreenPage1 extends StatelessWidget {
-  final functionalCategoriesRegistrationPageController =
-      Get.put(FunctionalCategoriesRegistrationPageController1());
+class FunctionalCategoriesRegistrationScreenPage3 extends StatelessWidget {
+  final functionalCategoriesRegistrationPageController = Get.put(FunctionalCategoriesRegistrationPageController3());
   var width;
   var height;
+
+  final formKEey=GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -121,7 +124,7 @@ class FunctionalCategoriesRegistrationScreenPage1 extends StatelessWidget {
                                                     child: InkWell(
                                                       onTap: () {},
                                                       child: Text(
-                                                        "Create Your BdJobs Account",
+                                                        "Select gender",
                                                         textAlign:
                                                         TextAlign.center,
                                                         style: TextStyle(
@@ -141,46 +144,17 @@ class FunctionalCategoriesRegistrationScreenPage1 extends StatelessWidget {
 
                                               SizedBox(height: 20,),
 
+                                              Expanded(child: Obx(() => ListView.builder(
+                                                  padding: EdgeInsets.zero,
+                                                  itemCount:functionalCategoriesRegistrationPageController.genderList.length,
 
-                                              _buildGoogleLoginButton(),
-                                              SizedBox(height: 20,),
-                                              _buildFacebookLoginButton(),
-                                              SizedBox(height: 30,),
+                                                  itemBuilder: (BuildContext context, int index) {
+                                                    return  _buildListItem(index: index,
+                                                       itemResponse: functionalCategoriesRegistrationPageController.genderList[index],
+                                                        iconLink: functionalCategoriesRegistrationPageController.genderIconList[index],
 
-                                              Row(
-                                                children: [
-                                                  Expanded(child: Container(
-                                                    color: smallTextColor,
-                                                    height: 1,
-                                                  )),
-                                                 Container(
-                                                   margin: EdgeInsets.only(left: 12,right: 12),
-                                                   child:  Text(
-                                                     "OR",
-                                                     textAlign: TextAlign.center,
-                                                     style: TextStyle(
-                                                       fontFamily: 'PT-Sans',
-                                                       fontSize: 16,
-                                                       fontWeight: FontWeight.normal,
-                                                       color: smallTextColor,
-                                                     ),
-                                                   ),
-                                                 ),
-                                                  Expanded(child: Container(
-                                                    color: smallTextColor,
-                                                    height: 1,
-                                                  ))
-                                                ],
-                                              ),
-
-                                              SizedBox(height: 30,),
-                                              _buildEnterInformationButton(),
-
-
-
-
-
-
+                                                         );
+                                                  })))
 
                                             ],
                                           ),
@@ -243,139 +217,83 @@ class FunctionalCategoriesRegistrationScreenPage1 extends StatelessWidget {
             )),
       ),
 
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          if(formKEey.currentState!.validate()){
 
+
+          }
+          // Add your onPressed code here!
+        },
+        backgroundColor: buttonBgColorGreen,
+
+        child: const Icon(Icons.arrow_forward_outlined),
+      ),
 
     );
   }
 
-  Widget _buildGoogleLoginButton() {
+
+
+
+
+  Widget _buildListItem({required var itemResponse,required int index, required String iconLink}) {
     return InkWell(
       onTap: () {
 
+        functionalCategoriesRegistrationPageController.selectedItemIndex(index.toString());
+
       },
-      child:  Container(
+
+      child:  Obx(() => Container(
         decoration: BoxDecoration(
-            color: Colors.transparent,
-            borderRadius: BorderRadius.circular(7.0),
+            color:index.toString()==functionalCategoriesRegistrationPageController.selectedItemIndex.value?
+            buttonBgColor: Colors.transparent,
+            borderRadius: BorderRadius.circular(5.0),
             border: Border.all(color:dropDownBorderColor,
                 width: 1
             )
 
         ),
 
-        padding: EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 10),
-        height: 45,
-        alignment: Alignment.center,
+        padding: EdgeInsets.only(left: 15,right: 15,top: 15,bottom: 15),
+        margin: EdgeInsets.only(left: 0,right: 0,top: 10,bottom: 10),
+
+        alignment: Alignment.centerLeft,
         child:  Row(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
+
             Image.asset(
-              "assets/images/icon_google.png",
-              width: 18,
+              iconLink,
               height: 18,
+              width: 18,
               fit: BoxFit.fill,
+              color: index.toString()==functionalCategoriesRegistrationPageController.selectedItemIndex.value? Colors.white: buttonBgColor,
+              alignment: Alignment.bottomCenter,
             ),
-            SizedBox(width: 12,),
+
+            SizedBox(width: 10,),
+
             Text(
-              "Import from Google",
-              textAlign: TextAlign.center,
+              itemResponse.toString(),
+              textAlign: TextAlign.left,
               style: TextStyle(
                 fontFamily: 'PT-Sans',
                 fontSize: 16,
-                fontWeight: FontWeight.w500,
-                color: levelTextColor,
+                fontWeight: FontWeight.normal,
+                color: index.toString()==functionalCategoriesRegistrationPageController.selectedItemIndex.value? Colors.white: buttonBgColor,
+
+
               ),
             )
+
+
           ],
         ),
-      ),
+      )),
     );
   }
 
-  Widget _buildFacebookLoginButton() {
-    return InkWell(
-      onTap: () {
-
-      },
-
-      child: Container(
-        decoration: BoxDecoration(
-            color: Colors.transparent,
-            borderRadius: BorderRadius.circular(7.0),
-            border: Border.all(color:dropDownBorderColor,
-                width: 1
-            )
-
-        ),
-
-        padding: EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 10),
-        height: 45,
-        alignment: Alignment.center,
-        child:  Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              "assets/images/icon_facebook.png",
-              width: 18,
-              height: 18,
-              fit: BoxFit.fill,
-              color: buttonBgColor,
-            ),
-            SizedBox(width: 12,),
-            Text(
-              "Import from Facebook",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontFamily: 'PT-Sans',
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-                color: levelTextColor,
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildEnterInformationButton() {
-    return InkWell(
-      onTap: () {
-
-      },
-
-      child: Container(
-        decoration: BoxDecoration(
-            color: boldTextColor,
-            borderRadius: BorderRadius.circular(7.0),
-            border: Border.all(color:boldTextColor,
-                width: 1
-            )
-
-        ),
-
-        padding: EdgeInsets.only(left: 25,right: 25,top: 10,bottom: 10),
-        height: 45,
-        alignment: Alignment.center,
-        child:  Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-
-            Text(
-              "Enter your information",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontFamily: 'PT-Sans',
-                fontSize: 15,
-                fontWeight: FontWeight.w500,
-                color: Colors.white,
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
 
 
 }

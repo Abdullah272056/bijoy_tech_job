@@ -3,6 +3,7 @@ import 'package:bijoy_tech_job/static/Colors.dart';
 import 'package:bijoy_tech_job/view/auth/functional_categories_page.dart';
 import 'package:bijoy_tech_job/view/auth/functional_categories_page1.dart';
 import 'package:bijoy_tech_job/view/auth/functional_categories_page2.dart';
+import 'package:bijoy_tech_job/view/auth/functional_categories_page3.dart';
 import 'package:bijoy_tech_job/view/auth/registration_type_select_page.dart';
 
 
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return  GetMaterialApp(
         debugShowCheckedModeBanner: false,
-       home:FunctionalCategoriesRegistrationScreenPage2()
+       home:FunctionalCategoriesRegistrationScreenPage3()
 
        // DashBoardPageScreen()
     );
