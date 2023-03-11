@@ -11,6 +11,7 @@ class Assets {
   static const String imagesIconGoogle = 'assets/images/icon_google.png';
   static const String imagesIconMale = 'assets/images/icon_male.png';
   static const String imagesIconOthersGender = 'assets/images/icon_others_gender.png';
+  static const String imagesIconOtp = 'assets/images/icon_otp.png';
   static const String imagesIconProfileUser = 'assets/images/icon_profile_user.png';
   static const String imagesIconStoragePermission = 'assets/images/icon_storage_permission.png';
   static const String imagesIconStoragePermisson = 'assets/images/icon_storage_permisson.png';

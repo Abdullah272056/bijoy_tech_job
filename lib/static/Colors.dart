@@ -12,7 +12,10 @@ const Color dropDownBorderColor = Color(0xffb2b4b2);
 const Color levelTextColor  = Color(0xFF777777);
 const Color buttonBgRed  = Color(0xFFD34B3E);
 
-const Color cardBgColor = Color(0xFFE7E7E7);
+const Color cardBgColor = Color(0xFFE5E5E5);
+
+
+const Color otpIconBgColor = Color(0xFFE1E0E0);
 
 const Color forgottenPasswordTextColor = Color(0xFF0069D9);
 const Color textColorWhiteLogin = Color(0xFFFFFFFF);
