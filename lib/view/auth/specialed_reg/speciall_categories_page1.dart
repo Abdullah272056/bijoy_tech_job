@@ -1,27 +1,23 @@
-import 'package:bijoy_tech_job/view/auth/specialed_reg/speciall_categories_page1.dart';
 import 'package:bijoy_tech_job/view/common/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
-import 'package:marquee/marquee.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
-import 'package:url_launcher/url_launcher.dart';
 
-import '../../../controller/functional/functional_registration_page_controller.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
+
 import '../../../controller/functional/functional_registration_page_controller1.dart';
-import '../../../controller/login_page_controller.dart';
-import '../../../controller/registration_type_select_page_controller.dart';
-import '../../../controller/special/special_registration_page_controller.dart';
+
+
+import '../../../controller/functional/functional_registration_page_controller2.dart';
 import '../../../controller/special/special_registration_page_controller1.dart';
 import '../../../static/Colors.dart';
 import '../../../static/text.dart';
-import '../functional_reg/functional_categories_page1.dart';
+import '../functional_reg/functional_categories_page2.dart';
 
 
-class SpecialCategoriesRegistrationScreenPage extends StatelessWidget {
+class SpecialCategoriesRegistrationScreenPage1 extends StatelessWidget {
   final specialCategoriesRegistrationPageController =
-      Get.put(SpecialCategoriesRegistrationPageController());
+      Get.put(SpecialCategoriesRegistrationPageController1());
   var width;
   var height;
 
@@ -81,7 +77,9 @@ class SpecialCategoriesRegistrationScreenPage extends StatelessWidget {
 
                                                     ),
                                                     child: InkWell(
-                                                      onTap: () {},
+                                                      onTap: () {
+                                                        Get.back();
+                                                      },
                                                       child: Icon(
                                                         Icons
                                                             .arrow_back_outlined,
@@ -119,15 +117,15 @@ class SpecialCategoriesRegistrationScreenPage extends StatelessWidget {
                                               Row(
                                                 children: [
                                                   Container(
-                                                    padding: EdgeInsets.only(
+                                                    padding: const EdgeInsets.only(
                                                       left: 0,
                                                       right: 5,
                                                       top: 30,
                                                     ),
                                                     child: InkWell(
                                                       onTap: () {},
-                                                      child: Text(
-                                                        "নিচের তালিকা থেকে দক্ষতা নির্বাচন করুন" ,
+                                                      child: const Text(
+                                                        "আপনার বিডি জব একাউন্ট তৈরি করুন",
                                                         textAlign:
                                                         TextAlign.center,
                                                         style: TextStyle(
@@ -148,18 +146,42 @@ class SpecialCategoriesRegistrationScreenPage extends StatelessWidget {
                                               SizedBox(height: 20,),
 
 
-                                              Expanded(child: ListView.builder(
-                                                  padding: EdgeInsets.zero,
-                                                  itemCount: 16,
+                                              _buildGoogleLoginButton(),
 
-                                                  itemBuilder: (BuildContext context, int index) {
-                                                    return  _buildListItem(index);
-                                                  }))
+                                              SizedBox(height: 20,),
 
+                                              _buildFacebookLoginButton(),
 
+                                              SizedBox(height: 30,),
 
+                                              Row(
+                                                children: [
+                                                  Expanded(child: Container(
+                                                    color: smallTextColor,
+                                                    height: 1,
+                                                  )),
+                                                 Container(
+                                                   margin: EdgeInsets.only(left: 12,right: 12),
+                                                   child:  Text(
+                                                     "অথবা",
+                                                     textAlign: TextAlign.center,
+                                                     style: TextStyle(
+                                                       fontFamily: 'PT-Sans',
+                                                       fontSize: 16,
+                                                       fontWeight: FontWeight.normal,
+                                                       color: smallTextColor,
+                                                     ),
+                                                   ),
+                                                 ),
+                                                  Expanded(child: Container(
+                                                    color: smallTextColor,
+                                                    height: 1,
+                                                  ))
+                                                ],
+                                              ),
 
-
+                                              SizedBox(height: 30,),
+                                              _buildEnterInformationButton(),
 
 
                                             ],
@@ -223,67 +245,150 @@ class SpecialCategoriesRegistrationScreenPage extends StatelessWidget {
             )),
       ),
 
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
 
-          if(specialCategoriesRegistrationPageController.selectedSkilledItemValue!=""){
-            Get.to(() => SpecialCategoriesRegistrationScreenPage1(),
-                arguments: {
-
-                  "skillListItem": specialCategoriesRegistrationPageController.selectedSkilledItemValue.toString(),
-
-                }
-            )?.then((value) => Get.delete<SpecialCategoriesRegistrationPageController1>());
-
-          }
-          else{
-            showToastShort("আন্তত একটা দক্ষতা নির্বাচন করুন");
-          }
-
-        },
-        backgroundColor: buttonBgColorGreen,
-
-        child: const Icon(Icons.arrow_forward_outlined),
-      ),
 
     );
   }
 
-  Widget _buildListItem(int index) {
+  Widget _buildGoogleLoginButton() {
     return InkWell(
       onTap: () {
-        specialCategoriesRegistrationPageController.selectedSkilledItemValue("অপারেটর"+index.toString());
-        specialCategoriesRegistrationPageController.selectedItemIndex(index.toString());
-      },
 
-      child:  Obx(() => Container(
+      },
+      child:  Container(
         decoration: BoxDecoration(
-            color:index.toString()==specialCategoriesRegistrationPageController.selectedItemIndex.value?
-            buttonBgColor: Colors.transparent,
-            borderRadius: BorderRadius.circular(5.0),
+            color: Colors.transparent,
+            borderRadius: BorderRadius.circular(7.0),
             border: Border.all(color:dropDownBorderColor,
                 width: 1
             )
 
         ),
 
-        padding: EdgeInsets.only(left: 15,right: 15,top: 10,bottom: 10),
-        margin: EdgeInsets.only(left: 0,right: 0,top: 5,bottom: 5),
-
-        alignment: Alignment.centerLeft,
-        child:   Text(
-
-          "ডাটা এন্ট্রি/ কম্পিউটার অপারেটর $index",
-          textAlign: TextAlign.left,
-          style: TextStyle(
-            fontFamily: 'PT-Sans',
-            fontSize: 15,
-            fontWeight: FontWeight.normal,
-            color: index.toString()==specialCategoriesRegistrationPageController.selectedItemIndex.value? Colors.white: buttonBgColor,
-
-          ),
+        padding: EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 10),
+        height: 45,
+        alignment: Alignment.center,
+        child:  Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              "assets/images/icon_google.png",
+              width: 18,
+              height: 18,
+              fit: BoxFit.fill,
+            ),
+            SizedBox(width: 12,),
+            Text(
+              "গুগল এর মাধ্যমে একাউন্ট তৈরী করুন",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontFamily: 'PT-Sans',
+                fontSize: 15,
+                fontWeight: FontWeight.w500,
+                color: levelTextColor,
+              ),
+            )
+          ],
         ),
-      )),
+      ),
+    );
+  }
+
+  Widget _buildFacebookLoginButton() {
+    return InkWell(
+      onTap: () {
+
+      },
+
+      child: Container(
+        decoration: BoxDecoration(
+            color: Colors.transparent,
+            borderRadius: BorderRadius.circular(7.0),
+            border: Border.all(color:dropDownBorderColor,
+                width: 1
+            )
+
+        ),
+
+        padding: EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 10),
+        height: 45,
+        alignment: Alignment.center,
+        child:  Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              "assets/images/icon_facebook.png",
+              width: 18,
+              height: 18,
+              fit: BoxFit.fill,
+              color: buttonBgColor,
+            ),
+            SizedBox(width: 12,),
+            Text(
+              "ফেসবুক এর মাধ্যমে একাউন্ট তৈরী করুন",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontFamily: 'PT-Sans',
+                fontSize: 15,
+                fontWeight: FontWeight.w500,
+                color: levelTextColor,
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildEnterInformationButton() {
+    return InkWell(
+      onTap: () {
+
+        if(specialCategoriesRegistrationPageController.selectedSkilledItemValue!=""){
+
+          Get.to(() => FunctionalCategoriesRegistrationScreenPage2(),
+              arguments: {
+                "skillListItem": specialCategoriesRegistrationPageController.selectedSkilledItemValue.toString(),
+              }
+          )?.then((value) => Get.delete<FunctionalCategoriesRegistrationPageController2>());
+
+        }
+        else{
+          showToastShort("আন্তত একটা দক্ষতা নির্বাচন করুন");
+        }
+
+      },
+
+      child: Container(
+        decoration: BoxDecoration(
+            color: boldTextColor,
+            borderRadius: BorderRadius.circular(7.0),
+            border: Border.all(color:boldTextColor,
+                width: 1
+            )
+
+        ),
+
+        padding: EdgeInsets.only(left: 25,right: 25,top: 10,bottom: 10),
+        height: 45,
+        alignment: Alignment.center,
+        child:  Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+
+            Text(
+              "আপনার তথ্য লিখুন",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontFamily: 'PT-Sans',
+                fontSize: 15,
+                fontWeight: FontWeight.w500,
+                color: Colors.white,
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 
