@@ -1,4 +1,5 @@
 
+import 'package:bijoy_tech_job/view/auth/specialed_reg/special_categories_page4.dart';
 import 'package:bijoy_tech_job/view/common/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,6 +7,7 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 import '../../../controller/functional/functional_registration_page_controller3.dart';
 import '../../../controller/functional/functional_registration_page_controller4.dart';
 import '../../../controller/special/special_registration_page_controller3.dart';
+import '../../../controller/special/special_registration_page_controller4.dart';
 import '../../../static/Colors.dart';
 import '../../../static/text.dart';
 import '../functional_reg/functional_categories_page4.dart';
@@ -95,7 +97,7 @@ class SpecialCategoriesRegistrationScreenPage3 extends StatelessWidget {
                                               Row(
                                                 children: [
                                                   Expanded(child:  Container(
-                                                    padding: EdgeInsets.only(
+                                                    padding: const EdgeInsets.only(
                                                         left: 0,
                                                         right: 0,
                                                         top: 10),
@@ -228,16 +230,13 @@ class SpecialCategoriesRegistrationScreenPage3 extends StatelessWidget {
           if(specialCategoriesRegistrationPageController.selectedGenderValue.value!=""){
 
 
-
-
-
-            Get.to(() => FunctionalCategoriesRegistrationScreenPage4(),
+            Get.to(() => SpecialCategoriesRegistrationScreenPage4(),
                 arguments: {
                   "skillListItem": specialCategoriesRegistrationPageController.selectedSkilledItemValue.toString(),
                   "userName": specialCategoriesRegistrationPageController.userName.toString(),
                   "userGender": specialCategoriesRegistrationPageController.userName.toString(),
                 }
-            )?.then((value) => Get.delete<FunctionalCategoriesRegistrationPageController4>());
+            )?.then((value) => Get.delete<SpecialCategoriesRegistrationPageController4>());
 
 
           }else{
