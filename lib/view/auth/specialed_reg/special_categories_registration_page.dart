@@ -1,4 +1,4 @@
-import 'package:bijoy_tech_job/view/auth/specialed_reg/speciall_categories_page1.dart';
+import 'package:bijoy_tech_job/view/auth/specialed_reg/special_categories_page1.dart';
 import 'package:bijoy_tech_job/view/common/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
