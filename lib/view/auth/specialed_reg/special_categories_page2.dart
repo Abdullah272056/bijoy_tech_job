@@ -1,27 +1,21 @@
-import 'package:bijoy_tech_job/view/auth/specialed_reg/special_categories_page2.dart';
-import 'package:bijoy_tech_job/view/common/toast.dart';
+
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-
 import 'package:percent_indicator/linear_percent_indicator.dart';
-
-import '../../../controller/functional/functional_registration_page_controller1.dart';
-
-
 import '../../../controller/functional/functional_registration_page_controller2.dart';
-import '../../../controller/special/special_registration_page_controller1.dart';
+import '../../../controller/functional/functional_registration_page_controller3.dart';
 import '../../../controller/special/special_registration_page_controller2.dart';
 import '../../../static/Colors.dart';
 import '../../../static/text.dart';
-import '../functional_reg/functional_categories_page2.dart';
+import '../functional_reg/functional_categories_page3.dart';
 
 
-class SpecialCategoriesRegistrationScreenPage1 extends StatelessWidget {
-  final specialCategoriesRegistrationPageController =
-      Get.put(SpecialCategoriesRegistrationPageController1());
+class SpecialCategoriesRegistrationScreenPage2 extends StatelessWidget {
+  final specialCategoriesRegistrationPageController = Get.put(SpecialCategoriesRegistrationPageController2());
   var width;
   var height;
+
+  final formKEey=GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +65,7 @@ class SpecialCategoriesRegistrationScreenPage1 extends StatelessWidget {
                                               Row(
                                                 children: [
                                                   Container(
-                                                    padding: const EdgeInsets.only(
+                                                    padding: EdgeInsets.only(
                                                       left: 5,
                                                       right: 5,
                                                       top: 15,
@@ -80,9 +74,11 @@ class SpecialCategoriesRegistrationScreenPage1 extends StatelessWidget {
                                                     ),
                                                     child: InkWell(
                                                       onTap: () {
+
                                                         Get.back();
+
                                                       },
-                                                      child: const Icon(
+                                                      child: Icon(
                                                         Icons
                                                             .arrow_back_outlined,
                                                         size: 25,
@@ -127,7 +123,7 @@ class SpecialCategoriesRegistrationScreenPage1 extends StatelessWidget {
                                                     child: InkWell(
                                                       onTap: () {},
                                                       child: const Text(
-                                                        "আপনার বিডি জব একাউন্ট তৈরি করুন",
+                                                        "নাম লিখুন",
                                                         textAlign:
                                                         TextAlign.center,
                                                         style: TextStyle(
@@ -147,44 +143,96 @@ class SpecialCategoriesRegistrationScreenPage1 extends StatelessWidget {
 
                                               SizedBox(height: 20,),
 
+                                              Form(
+                                                key: formKEey,
 
-                                              _buildGoogleLoginButton(),
+                                                  child:Column(
+                                                    children: [
 
-                                              SizedBox(height: 20,),
 
-                                              _buildFacebookLoginButton(),
+                                                      SizedBox(height: 20,),
 
-                                              SizedBox(height: 30,),
+                                                      userInput(
+                                                        userInputController: specialCategoriesRegistrationPageController.userNameController.value,
+                                                        hintTitle: 'নাম', keyboardType:TextInputType.text,
+                                                        //  iconData: Icons.person
+                                                      ),
 
+                                                    ],
+                                                  )
+
+
+
+                                ),
+
+                                              Container(
+                                                color:bgColor,
+                                                padding: EdgeInsets.only(left: 5,right: 5,top: 30),
+                                                child:Text(
+                                                  "সোশ্যাল সাইট থেকে তথ্য আনুন",
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                    fontFamily: 'PT-Sans',
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.normal,
+                                                    color: levelTextColor,
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(height: 10,),
                                               Row(
+                                                mainAxisAlignment: MainAxisAlignment.center,
                                                 children: [
-                                                  Expanded(child: Container(
-                                                    color: smallTextColor,
-                                                    height: 1,
-                                                  )),
-                                                 Container(
-                                                   margin: const EdgeInsets.only(left: 12,right: 12),
-                                                   child:  const Text(
-                                                     "অথবা",
-                                                     textAlign: TextAlign.center,
-                                                     style: TextStyle(
-                                                       fontFamily: 'PT-Sans',
-                                                       fontSize: 16,
-                                                       fontWeight: FontWeight.normal,
-                                                       color: smallTextColor,
-                                                     ),
-                                                   ),
-                                                 ),
-                                                  Expanded(child: Container(
-                                                    color: smallTextColor,
-                                                    height: 1,
-                                                  ))
+                                                  InkWell(
+                                                    onTap: (){},
+                                                    child: Container(
+
+                                                      decoration: BoxDecoration(
+                                                        color: buttonBgRed,
+                                                        borderRadius: BorderRadius.all(
+                                                          Radius.circular(23.0),
+                                                        ),
+                                                      ),
+                                                      height: 46,
+                                                      width: 46,
+                                                      padding: EdgeInsets.all(12),
+                                                      child: Center(
+                                                        child: Image.asset(
+                                                          "assets/images/icon_google.png",
+                                                          fit: BoxFit.fill,
+                                                          color: bgColor,
+                                                        ),
+                                                      ),
+                                                    ),
+
+                                                  ),
+                                                  SizedBox(width: 10,),
+                                                  InkWell(
+                                                    onTap: (){},
+                                                    child: Container(
+
+                                                      decoration: BoxDecoration(
+                                                        color: buttonBgColor,
+                                                        borderRadius: BorderRadius.all(
+                                                          Radius.circular(23.0),
+                                                        ),
+                                                      ),
+                                                      height: 46,
+                                                      width: 46,
+                                                      padding: EdgeInsets.all(12),
+                                                      child: Center(
+                                                        child: Image.asset(
+                                                          "assets/images/icon_facebook.png",
+                                                          fit: BoxFit.fill,
+                                                          color: bgColor,
+
+                                                        ),
+                                                      ),
+                                                    ),
+
+                                                  ),
                                                 ],
                                               ),
-
-                                              SizedBox(height: 30,),
-                                              _buildEnterInformationButton(),
-
 
                                             ],
                                           ),
@@ -199,7 +247,7 @@ class SpecialCategoriesRegistrationScreenPage1 extends StatelessWidget {
                                                   right: 5,
                                                   bottom: 00,
                                                   top: 20),
-                                              child: const Text(
+                                              child:  const Text(
                                                 helpTextBangla,
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
@@ -217,12 +265,12 @@ class SpecialCategoriesRegistrationScreenPage1 extends StatelessWidget {
                                           MainAxisAlignment.center,
                                           children: [
                                             Container(
-                                              padding: EdgeInsets.only(
+                                              padding: const EdgeInsets.only(
                                                   left: 0,
                                                   right: 5,
                                                   bottom: 20,
                                                   top: 5),
-                                              child: Text(
+                                              child:  const Text(
                                                 helpPhoneNumberBangla,
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
@@ -247,152 +295,114 @@ class SpecialCategoriesRegistrationScreenPage1 extends StatelessWidget {
             )),
       ),
 
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          if(formKEey.currentState!.validate()){
+
+            String userName = specialCategoriesRegistrationPageController.userNameController.value.text;
+
+            Get.to(() => FunctionalCategoriesRegistrationScreenPage3(),
+                arguments: {
+                  "skillListItem": specialCategoriesRegistrationPageController.selectedSkilledItemValue.toString(),
+                  "userName": userName.toString(),
+                }
+            )?.then((value) => Get.delete<FunctionalCategoriesRegistrationPageController3>());
 
 
-    );
-  }
 
-  Widget _buildGoogleLoginButton() {
-    return InkWell(
-      onTap: () {
 
-      },
-      child:  Container(
-        decoration: BoxDecoration(
-            color: Colors.transparent,
-            borderRadius: BorderRadius.circular(7.0),
-            border: Border.all(color:dropDownBorderColor,
-                width: 1
-            )
+          }
+          // Add your onPressed code here!
+        },
+        backgroundColor: buttonBgColorGreen,
 
-        ),
-
-        padding: EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 10),
-        height: 45,
-        alignment: Alignment.center,
-        child:  Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              "assets/images/icon_google.png",
-              width: 18,
-              height: 18,
-              fit: BoxFit.fill,
-            ),
-            SizedBox(width: 12,),
-            Text(
-              "গুগল এর মাধ্যমে একাউন্ট তৈরী করুন",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontFamily: 'PT-Sans',
-                fontSize: 15,
-                fontWeight: FontWeight.w500,
-                color: levelTextColor,
-              ),
-            )
-          ],
-        ),
+        child: const Icon(Icons.arrow_forward_outlined),
       ),
+
     );
   }
 
-  Widget _buildFacebookLoginButton() {
-    return InkWell(
-      onTap: () {
 
-      },
+  Widget userInput({
+    required TextEditingController userInputController,
+    required String hintTitle,
+    required TextInputType keyboardType,
+    IconData? iconData,
+  }){
+    return TextFormField (
+      validator: (values){
+        if(values==""){
 
-      child: Container(
-        decoration: BoxDecoration(
-            color: Colors.transparent,
-            borderRadius: BorderRadius.circular(7.0),
-            border: Border.all(color:dropDownBorderColor,
-                width: 1
-            )
+          return "নাম খালি রাখা যাবে না";
 
-        ),
-
-        padding: EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 10),
-        height: 45,
-        alignment: Alignment.center,
-        child:  Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              "assets/images/icon_facebook.png",
-              width: 18,
-              height: 18,
-              fit: BoxFit.fill,
-              color: buttonBgColor,
-            ),
-            SizedBox(width: 12,),
-            Text(
-              "ফেসবুক এর মাধ্যমে একাউন্ট তৈরী করুন",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontFamily: 'PT-Sans',
-                fontSize: 15,
-                fontWeight: FontWeight.w500,
-                color: levelTextColor,
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildEnterInformationButton() {
-    return InkWell(
-      onTap: () {
-
-        if(specialCategoriesRegistrationPageController.selectedSkilledItemValue!=""){
-
-          Get.to(() => SpecialCategoriesRegistrationScreenPage2(),
-              arguments: {
-                "skillListItem": specialCategoriesRegistrationPageController.selectedSkilledItemValue.toString(),
-              }
-          )?.then((value) => Get.delete<SpecialCategoriesRegistrationPageController2>());
 
         }
-        else{
-          showToastShort("আন্তত একটা দক্ষতা নির্বাচন করুন");
-        }
-
+        return null;
       },
-
-      child: Container(
-        decoration: BoxDecoration(
-            color: boldTextColor,
-            borderRadius: BorderRadius.circular(7.0),
-            border: Border.all(color:boldTextColor,
-                width: 1
-            )
-
-        ),
-
-        padding: EdgeInsets.only(left: 25,right: 25,top: 10,bottom: 10),
-        height: 45,
-        alignment: Alignment.center,
-        child:  Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-
-            Text(
-              "আপনার তথ্য লিখুন",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontFamily: 'PT-Sans',
-                fontSize: 15,
-                fontWeight: FontWeight.w500,
-                color: Colors.white,
-              ),
-            )
-          ],
-        ),
+      controller: userInputController,
+      textInputAction: TextInputAction.next,
+      autocorrect: false,
+      enableSuggestions: false,
+      cursorColor: textColor,
+      style: TextStyle(
+          color: textColor
       ),
+      autofocus: false,
+
+      decoration:  InputDecoration(
+          contentPadding:  EdgeInsets.only(left: 17, right: 17,top: height/46,bottom:height/46 ),
+          // contentPadding:EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
+          labelText: hintTitle,
+        labelStyle: const TextStyle(
+            color:levelTextColor,
+          ),
+          focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(6.0)),
+              borderSide: BorderSide(color: buttonBgColor,width: 2)
+          ),
+          border: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(6.0)),
+              borderSide: BorderSide(color: dropDownBorderColor,width: 1)
+          ),
+          errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(6.0)),
+              borderSide: BorderSide(color: Colors.red, width: 2))),
+
+      // decoration: InputDecoration(
+      //   border: InputBorder.none,
+      //   suffixIconConstraints: const BoxConstraints(
+      //     minHeight: 15,
+      //     minWidth: 15,
+      //   ),
+      //
+      //
+      //   suffixIcon:Padding(
+      //     padding: EdgeInsets.only(right: 20),
+      //     child:  Icon(iconData,
+      //       color:  levelTextColor,
+      //       size: 18,
+      //     ),
+      //   ),
+      //   contentPadding:  EdgeInsets.only(left: 17, right: 17,top: height/50,bottom:height/50 ),
+      //   focusedBorder:  const OutlineInputBorder(
+      //     borderSide: BorderSide(color:buttonBgColor, width: 1.5),
+      //   ),
+      //   enabledBorder:  const OutlineInputBorder(
+      //     borderSide: BorderSide(color:dropDownBorderColor, width: 1),
+      //   ),
+      //   labelText:hintTitle,
+      //   labelStyle: const TextStyle(
+      //     color:levelTextColor,
+      //   ),
+      //
+      // ),
+
+      keyboardType: keyboardType,
     );
   }
+
+
+
+
 
 
 }
