@@ -235,7 +235,7 @@ class LogInScreenPage extends StatelessWidget {
 
 
                                                 },
-                                                child: Text(
+                                                child: const Text(
                                                   "Create Account",
                                                   textAlign: TextAlign.center,
                                                   style: TextStyle(
