@@ -7,10 +7,10 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 
-import '../../view/common/toast.dart';
-import '../api_service/api_service.dart';
-import '../data_base/share_pref/sharePreferenceDataSaveName.dart';
-import '../view/common/loading_dialog.dart';
+import '../../../view/common/toast.dart';
+import '../../api_service/api_service.dart';
+import '../../data_base/share_pref/sharePreferenceDataSaveName.dart';
+import '../../view/common/loading_dialog.dart';
 
 class  FunctionalCategoriesRegistrationPageController extends GetxController {
 
@@ -24,6 +24,9 @@ class  FunctionalCategoriesRegistrationPageController extends GetxController {
 
 
   var selectedItemIndex="-1".obs;
+
+  var selectedSkilledItemValue="".obs;
+
   var indicatorPercent=.15.obs;
 
   final userNameController = TextEditingController().obs;

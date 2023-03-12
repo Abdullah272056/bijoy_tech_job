@@ -7,19 +7,18 @@ import 'package:marquee/marquee.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../controller/functional_registration_page_controller.dart';
-import '../../controller/functional_registration_page_controller1.dart';
-import '../../controller/functional_registration_page_controller2.dart';
-import '../../controller/login_page_controller.dart';
-import '../../controller/registration_type_select_page_controller.dart';
-import '../../static/Colors.dart';
+import '../../../controller/functional/functional_registration_page_controller.dart';
+import '../../../controller/functional/functional_registration_page_controller1.dart';
+import '../../../controller/login_page_controller.dart';
+import '../../../controller/registration_type_select_page_controller.dart';
+import '../../../static/Colors.dart';
+import 'functional_categories_page1.dart';
 
-class FunctionalCategoriesRegistrationScreenPage2 extends StatelessWidget {
-  final functionalCategoriesRegistrationPageController = Get.put(FunctionalCategoriesRegistrationPageController2());
+class FunctionalCategoriesRegistrationScreenPage extends StatelessWidget {
+  final functionalCategoriesRegistrationPageController =
+      Get.put(FunctionalCategoriesRegistrationPageController());
   var width;
   var height;
-
-  final formKEey=GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -123,7 +122,7 @@ class FunctionalCategoriesRegistrationScreenPage2 extends StatelessWidget {
                                                     child: InkWell(
                                                       onTap: () {},
                                                       child: Text(
-                                                        "Write Name",
+                                                        "Select skills from the list",
                                                         textAlign:
                                                         TextAlign.center,
                                                         style: TextStyle(
@@ -143,30 +142,14 @@ class FunctionalCategoriesRegistrationScreenPage2 extends StatelessWidget {
 
                                               SizedBox(height: 20,),
 
-                                              Form(
-                                                key: formKEey,
 
-                                                  child:Column(
-                                                    children: [
+                                              Expanded(child: ListView.builder(
+                                                  padding: EdgeInsets.zero,
+                                                  itemCount: 16,
 
-
-                                                      SizedBox(height: 20,),
-
-                                                      userInput(
-                                                        userInputController: functionalCategoriesRegistrationPageController.userNameController.value,
-                                                        hintTitle: 'Name', keyboardType:TextInputType.text,
-                                                        //  iconData: Icons.person
-                                                      ),
-
-                                                    ],
-                                                  )
-
-
-
-                                )
-
-
-
+                                                  itemBuilder: (BuildContext context, int index) {
+                                                    return  _buildListItem(index);
+                                                  }))
 
 
 
@@ -237,11 +220,21 @@ class FunctionalCategoriesRegistrationScreenPage2 extends StatelessWidget {
 
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          if(formKEey.currentState!.validate()){
 
+          if(functionalCategoriesRegistrationPageController.selectedSkilledItemValue!=""){
+            Get.to(() => FunctionalCategoriesRegistrationScreenPage1(),
+                arguments: {
+
+                  "skillListItem": functionalCategoriesRegistrationPageController.selectedSkilledItemValue.toString(),
+
+                }
+            )?.then((value) => Get.delete<FunctionalCategoriesRegistrationPageController1>());
 
           }
-          // Add your onPressed code here!
+          else{
+            showToastShort("Please Select Skill");
+          }
+
         },
         backgroundColor: buttonBgColorGreen,
 
@@ -251,154 +244,43 @@ class FunctionalCategoriesRegistrationScreenPage2 extends StatelessWidget {
     );
   }
 
-
-  Widget userInput({
-    required TextEditingController userInputController,
-    required String hintTitle,
-    required TextInputType keyboardType,
-    IconData? iconData,
-  }){
-    return TextFormField (
-      validator: (values){
-        if(values==""){
-
-          return "Name can not be empty!";
-        }
-        return null;
+  Widget _buildListItem(int index) {
+    return InkWell(
+      onTap: () {
+        functionalCategoriesRegistrationPageController.selectedSkilledItemValue("skill"+index.toString());
+        functionalCategoriesRegistrationPageController.selectedItemIndex(index.toString());
       },
-      controller: userInputController,
-      textInputAction: TextInputAction.next,
-      autocorrect: false,
-      enableSuggestions: false,
-      cursorColor: textColor,
-      style: TextStyle(
-          color: textColor
-      ),
-      autofocus: false,
 
-      decoration:  InputDecoration(
-          contentPadding:  EdgeInsets.only(left: 17, right: 17,top: height/46,bottom:height/46 ),
-          // contentPadding:EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
-          labelText: hintTitle,
-        labelStyle: const TextStyle(
-            color:levelTextColor,
-          ),
-          focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(6.0)),
-              borderSide: BorderSide(color: buttonBgColor,width: 2)
-          ),
-          border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(6.0)),
-              borderSide: BorderSide(color: dropDownBorderColor,width: 1)
-          ),
-          errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(6.0)),
-              borderSide: BorderSide(color: Colors.red, width: 2))),
+      child:  Obx(() => Container(
+        decoration: BoxDecoration(
+            color:index.toString()==functionalCategoriesRegistrationPageController.selectedItemIndex.value?
+            buttonBgColor: Colors.transparent,
+            borderRadius: BorderRadius.circular(5.0),
+            border: Border.all(color:dropDownBorderColor,
+                width: 1
+            )
 
-      // decoration: InputDecoration(
-      //   border: InputBorder.none,
-      //   suffixIconConstraints: const BoxConstraints(
-      //     minHeight: 15,
-      //     minWidth: 15,
-      //   ),
-      //
-      //
-      //   suffixIcon:Padding(
-      //     padding: EdgeInsets.only(right: 20),
-      //     child:  Icon(iconData,
-      //       color:  levelTextColor,
-      //       size: 18,
-      //     ),
-      //   ),
-      //   contentPadding:  EdgeInsets.only(left: 17, right: 17,top: height/50,bottom:height/50 ),
-      //   focusedBorder:  const OutlineInputBorder(
-      //     borderSide: BorderSide(color:buttonBgColor, width: 1.5),
-      //   ),
-      //   enabledBorder:  const OutlineInputBorder(
-      //     borderSide: BorderSide(color:dropDownBorderColor, width: 1),
-      //   ),
-      //   labelText:hintTitle,
-      //   labelStyle: const TextStyle(
-      //     color:levelTextColor,
-      //   ),
-      //
-      // ),
-
-      keyboardType: keyboardType,
-    );
-  }
-
-
-  Widget userInput1({
-    required TextEditingController userInputController,
-    required String hintTitle,
-    required TextInputType keyboardType,
-    IconData? iconData,
-  }){
-    return Container(
-      height: 50,
-      alignment: Alignment.center,
-      margin: const EdgeInsets.only(bottom: 6,top: 5),
-      decoration: BoxDecoration(
-          color: Colors.transparent,
-          borderRadius: BorderRadius.circular(10)),
-      child: Padding(
-        padding:
-        const EdgeInsets.only(left: 0.0, top: 0, bottom: 0, right: 0),
-        child: TextFormField (
-          validator: (values){
-              if(values==""){
-
-                return "Name can not be empty";
-              }
-              return null;
-          },
-          controller: userInputController,
-          textInputAction: TextInputAction.next,
-          autocorrect: false,
-          enableSuggestions: false,
-          cursorColor: textColor,
-          style: TextStyle(
-              color: textColor
-          ),
-          autofocus: false,
-
-
-
-          decoration: InputDecoration(
-            border: InputBorder.none,
-            suffixIconConstraints: const BoxConstraints(
-              minHeight: 15,
-              minWidth: 15,
-            ),
-
-
-            suffixIcon:Padding(
-              padding: EdgeInsets.only(right: 20),
-              child:  Icon(iconData,
-                color:  levelTextColor,
-                size: 18,
-              ),
-            ),
-            contentPadding:  EdgeInsets.only(left: 17, right: 17,top: height/50,bottom:height/50 ),
-            focusedBorder:  const OutlineInputBorder(
-              borderSide: BorderSide(color:buttonBgColor, width: 1.5),
-            ),
-            enabledBorder:  const OutlineInputBorder(
-              borderSide: BorderSide(color:dropDownBorderColor, width: 1),
-            ),
-            labelText:hintTitle,
-            labelStyle: const TextStyle(
-              color:levelTextColor,
-            ),
-
-          ),
-
-          keyboardType: keyboardType,
         ),
-      ),
+
+        padding: EdgeInsets.only(left: 15,right: 15,top: 10,bottom: 10),
+        margin: EdgeInsets.only(left: 0,right: 0,top: 5,bottom: 5),
+
+        alignment: Alignment.centerLeft,
+        child:   Text(
+          "Jobs no $index",
+          textAlign: TextAlign.left,
+          style: TextStyle(
+            fontFamily: 'PT-Sans',
+            fontSize: 15,
+            fontWeight: FontWeight.normal,
+            color: index.toString()==functionalCategoriesRegistrationPageController.selectedItemIndex.value? Colors.white: buttonBgColor,
+
+
+          ),
+        ),
+      )),
     );
   }
-
 
 
 }

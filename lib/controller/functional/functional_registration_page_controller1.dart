@@ -8,9 +8,7 @@ import 'package:get_storage/get_storage.dart';
 
 
 import '../../view/common/toast.dart';
-import '../api_service/api_service.dart';
-import '../data_base/share_pref/sharePreferenceDataSaveName.dart';
-import '../view/common/loading_dialog.dart';
+
 
 class  FunctionalCategoriesRegistrationPageController1 extends GetxController {
 
@@ -28,10 +26,15 @@ class  FunctionalCategoriesRegistrationPageController1 extends GetxController {
 
   final userNameController = TextEditingController().obs;
 
+  dynamic argumentData = Get.arguments;
+  var selectedSkilledItemValue="".obs;
   @override
   void onInit() {
 
+    selectedSkilledItemValue(argumentData["skillListItem"].toString());
+
     super.onInit();
+
   }
 
 

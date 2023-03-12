@@ -1,22 +1,11 @@
 import 'package:bijoy_tech_job/view/common/toast.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
-import 'package:marquee/marquee.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
-import 'package:url_launcher/url_launcher.dart';
 
-import '../../controller/functional_registration_page_controller.dart';
-import '../../controller/functional_registration_page_controller1.dart';
-import '../../controller/functional_registration_page_controller2.dart';
-import '../../controller/functional_registration_page_controller3.dart';
-import '../../controller/functional_registration_page_controller4.dart';
-import '../../controller/functional_registration_page_controller5.dart';
-import '../../controller/functional_registration_verify-page_controller.dart';
-import '../../controller/login_page_controller.dart';
-import '../../controller/registration_type_select_page_controller.dart';
-import '../../static/Colors.dart';
+import 'package:get/get.dart';
+
+import '../../../controller/functional/functional_registration_verify-page_controller.dart';
+
+import '../../../static/Colors.dart';
 
 class FunctionalRegistrationVerifyScreenPage extends StatelessWidget {
   final functionalCategoriesRegistrationPageController = Get.put(FunctionalRegistrationVerifyPageController());
@@ -60,7 +49,7 @@ class FunctionalRegistrationVerifyScreenPage extends StatelessWidget {
                                  Row(
                                    children: [
                                      Container(
-                                       padding: EdgeInsets.only(
+                                       padding: const EdgeInsets.only(
                                          left: 5,
                                          right: 5,
                                          top: 15,
@@ -68,8 +57,10 @@ class FunctionalRegistrationVerifyScreenPage extends StatelessWidget {
 
                                        ),
                                        child: InkWell(
-                                         onTap: () {},
-                                         child: Icon(
+                                         onTap: () {
+                                           Get.back();
+                                         },
+                                         child: const Icon(
                                            Icons
                                                .arrow_back_outlined,
                                            size: 25,
@@ -95,9 +86,9 @@ class FunctionalRegistrationVerifyScreenPage extends StatelessWidget {
                                          ),
 
                                          child: Container(
-                                           margin: EdgeInsets.all(15),
+                                           margin: const EdgeInsets.all(15),
 
-                                             decoration: BoxDecoration(
+                                             decoration: const BoxDecoration(
                                                  color: otpIconBgColor,
                                                  borderRadius: BorderRadius.all(Radius.circular(70))
                                              ),
@@ -150,19 +141,14 @@ class FunctionalRegistrationVerifyScreenPage extends StatelessWidget {
                                      child:Column(
                                        children: [
 
-
                                          userInputPassword(
                                            userInputController: functionalCategoriesRegistrationPageController.passwordController.value,
                                            hintTitle: 'Write the code',
                                            keyboardType:TextInputType.number,
-
-
                                            //  iconData: Icons.person
                                          ),
 
-                                         SizedBox(height: 30,),
-
-
+                                         const SizedBox(height: 30,),
 
                                        ],
                                      )
@@ -186,6 +172,7 @@ class FunctionalRegistrationVerifyScreenPage extends StatelessWidget {
                                   ),
                                   Column(
                                     children: [
+
                                       Row(
                                         mainAxisAlignment:
                                         MainAxisAlignment.center,
@@ -214,12 +201,12 @@ class FunctionalRegistrationVerifyScreenPage extends StatelessWidget {
                                         MainAxisAlignment.center,
                                         children: [
                                           Container(
-                                            padding: EdgeInsets.only(
+                                            padding: const EdgeInsets.only(
                                                 left: 0,
                                                 right: 5,
                                                 bottom: 20,
                                                 top: 5),
-                                            child: Text(
+                                            child: const Text(
                                               "call at 1679",
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
@@ -232,9 +219,9 @@ class FunctionalRegistrationVerifyScreenPage extends StatelessWidget {
                                           ),
                                         ],
                                       ),
+
                                     ],
                                   ),
-
                                 ],
                               )
                             ],
@@ -242,9 +229,6 @@ class FunctionalRegistrationVerifyScreenPage extends StatelessWidget {
                         ),
                       ],
                     )
-
-
-
 
                 ),
               ],
@@ -268,30 +252,25 @@ class FunctionalRegistrationVerifyScreenPage extends StatelessWidget {
     );
   }
 
-
-
-
   Widget userInputPassword({
     required TextEditingController userInputController,
     required String hintTitle,
     required TextInputType keyboardType,
-
     IconData? iconData,
   }){
     return TextFormField (
       validator: (values){
-
         if (values!.isEmpty) {
           return 'Otp is required';
-        } else if (values.length<6) {
+        }
+        else if (values.length<6) {
           return 'Otp too short';
         }
         else if (functionalCategoriesRegistrationPageController.otpValidationError.value!="") {
           return functionalCategoriesRegistrationPageController.otpValidationError.value;
         }
-
-
         return null;
+
       },
       controller: userInputController,
       textInputAction: TextInputAction.next,
@@ -310,29 +289,22 @@ class FunctionalRegistrationVerifyScreenPage extends StatelessWidget {
         labelStyle: const TextStyle(
           color:levelTextColor,
         ),
-        focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(6.0)),
+        focusedBorder: const OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(6.0)),
             borderSide: BorderSide(color: buttonBgColor,width: 2)
         ),
-        border: OutlineInputBorder(
+        border: const OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(6.0)),
             borderSide: BorderSide(color: dropDownBorderColor,width: 1)
         ),
-        errorBorder: OutlineInputBorder(
+        errorBorder: const OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(6.0)),
             borderSide: BorderSide(color: Colors.red, width: 2)),
 
-
-
-
       ),
-
-
 
       keyboardType: keyboardType,
     );
   }
 
 
-
-  
 }

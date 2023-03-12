@@ -7,15 +7,14 @@ import 'package:marquee/marquee.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../controller/functional_registration_page_controller.dart';
-import '../../controller/functional_registration_page_controller1.dart';
-import '../../controller/functional_registration_page_controller2.dart';
-import '../../controller/functional_registration_page_controller3.dart';
-import '../../controller/functional_registration_page_controller4.dart';
-import '../../controller/functional_registration_page_controller5.dart';
-import '../../controller/login_page_controller.dart';
-import '../../controller/registration_type_select_page_controller.dart';
-import '../../static/Colors.dart';
+import '../../../controller/functional/functional_registration_page_controller.dart';
+import '../../../controller/functional/functional_registration_page_controller5.dart';
+
+import '../../../controller/functional/functional_registration_verify-page_controller.dart';
+import '../../../controller/login_page_controller.dart';
+import '../../../controller/registration_type_select_page_controller.dart';
+import '../../../static/Colors.dart';
+import 'functional_registration_verify.dart';
 
 class FunctionalCategoriesRegistrationScreenPage5 extends StatelessWidget {
   final functionalCategoriesRegistrationPageController = Get.put(FunctionalCategoriesRegistrationPageController5());
@@ -46,7 +45,6 @@ class FunctionalCategoriesRegistrationScreenPage5 extends StatelessWidget {
                           child:  Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
-
                             children: [
 
                              Padding(padding: EdgeInsets.only(left: 15,bottom: 15,right: 15),
@@ -67,7 +65,10 @@ class FunctionalCategoriesRegistrationScreenPage5 extends StatelessWidget {
 
                                        ),
                                        child: InkWell(
-                                         onTap: () {},
+                                         onTap: () {
+
+                                           Get.back();
+                                         },
                                          child: Icon(
                                            Icons
                                                .arrow_back_outlined,
@@ -129,11 +130,11 @@ class FunctionalCategoriesRegistrationScreenPage5 extends StatelessWidget {
                                  const SizedBox(height: 20,),
 
                                  _buildEmailItem(
-                                   itemResponse: functionalCategoriesRegistrationPageController.email,
+                                   itemResponse: functionalCategoriesRegistrationPageController.userEmailValue.value,
 
                                  ),
 
-                                 _buildPhoneItem(itemResponse: functionalCategoriesRegistrationPageController.phone,),
+                                 _buildPhoneItem(itemResponse: functionalCategoriesRegistrationPageController.userPhoneValue.value,),
 
 
                                  SizedBox(height: 20,),
@@ -181,8 +182,6 @@ class FunctionalCategoriesRegistrationScreenPage5 extends StatelessWidget {
                                    ],
                                  ),
 
-
-
                                  Form(
                                      key: formKEey,
 
@@ -215,8 +214,6 @@ class FunctionalCategoriesRegistrationScreenPage5 extends StatelessWidget {
 
 
                                  ),
-
-
 
                                ],
                              ),
@@ -300,7 +297,14 @@ class FunctionalCategoriesRegistrationScreenPage5 extends StatelessWidget {
         onPressed: () {
           if(formKEey.currentState!.validate()){
 
-            showToastShort("api call");
+            Get.to(() => FunctionalRegistrationVerifyScreenPage(),
+                arguments: {
+                  "skillListItem": functionalCategoriesRegistrationPageController.selectedSkilledItemValue.toString(),
+                  "userName": functionalCategoriesRegistrationPageController.userName.toString(),
+                  "userGender": functionalCategoriesRegistrationPageController.userName.toString(),
+
+                }
+            )?.then((value) => Get.delete<FunctionalRegistrationVerifyPageController>());
 
           }
           // Add your onPressed code here!

@@ -2,19 +2,19 @@ import 'package:bijoy_tech_job/view/common/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
-import 'package:marquee/marquee.dart';
+
 import 'package:percent_indicator/linear_percent_indicator.dart';
-import 'package:url_launcher/url_launcher.dart';
 
-import '../../controller/functional_registration_page_controller.dart';
-import '../../controller/login_page_controller.dart';
-import '../../controller/registration_type_select_page_controller.dart';
-import '../../static/Colors.dart';
+import '../../../controller/functional/functional_registration_page_controller1.dart';
 
-class FunctionalCategoriesRegistrationScreenPage extends StatelessWidget {
+
+import '../../../controller/functional/functional_registration_page_controller2.dart';
+import '../../../static/Colors.dart';
+import 'functional_categories_page2.dart';
+
+class FunctionalCategoriesRegistrationScreenPage1 extends StatelessWidget {
   final functionalCategoriesRegistrationPageController =
-      Get.put(FunctionalCategoriesRegistrationPageController());
+      Get.put(FunctionalCategoriesRegistrationPageController1());
   var width;
   var height;
 
@@ -74,7 +74,9 @@ class FunctionalCategoriesRegistrationScreenPage extends StatelessWidget {
 
                                                     ),
                                                     child: InkWell(
-                                                      onTap: () {},
+                                                      onTap: () {
+                                                        Get.back();
+                                                      },
                                                       child: Icon(
                                                         Icons
                                                             .arrow_back_outlined,
@@ -112,15 +114,15 @@ class FunctionalCategoriesRegistrationScreenPage extends StatelessWidget {
                                               Row(
                                                 children: [
                                                   Container(
-                                                    padding: EdgeInsets.only(
+                                                    padding: const EdgeInsets.only(
                                                       left: 0,
                                                       right: 5,
                                                       top: 30,
                                                     ),
                                                     child: InkWell(
                                                       onTap: () {},
-                                                      child: Text(
-                                                        "Select skills from the list",
+                                                      child: const Text(
+                                                        "Create Your BdJobs Account",
                                                         textAlign:
                                                         TextAlign.center,
                                                         style: TextStyle(
@@ -141,18 +143,42 @@ class FunctionalCategoriesRegistrationScreenPage extends StatelessWidget {
                                               SizedBox(height: 20,),
 
 
-                                              Expanded(child: ListView.builder(
-                                                  padding: EdgeInsets.zero,
-                                                  itemCount: 16,
+                                              _buildGoogleLoginButton(),
 
-                                                  itemBuilder: (BuildContext context, int index) {
-                                                    return  _buildListItem(index);
-                                                  }))
+                                              SizedBox(height: 20,),
 
+                                              _buildFacebookLoginButton(),
 
+                                              SizedBox(height: 30,),
 
+                                              Row(
+                                                children: [
+                                                  Expanded(child: Container(
+                                                    color: smallTextColor,
+                                                    height: 1,
+                                                  )),
+                                                 Container(
+                                                   margin: EdgeInsets.only(left: 12,right: 12),
+                                                   child:  Text(
+                                                     "OR",
+                                                     textAlign: TextAlign.center,
+                                                     style: TextStyle(
+                                                       fontFamily: 'PT-Sans',
+                                                       fontSize: 16,
+                                                       fontWeight: FontWeight.normal,
+                                                       color: smallTextColor,
+                                                     ),
+                                                   ),
+                                                 ),
+                                                  Expanded(child: Container(
+                                                    color: smallTextColor,
+                                                    height: 1,
+                                                  ))
+                                                ],
+                                              ),
 
-
+                                              SizedBox(height: 30,),
+                                              _buildEnterInformationButton(),
 
 
                                             ],
@@ -216,52 +242,150 @@ class FunctionalCategoriesRegistrationScreenPage extends StatelessWidget {
             )),
       ),
 
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Add your onPressed code here!
-        },
-        backgroundColor: buttonBgColorGreen,
 
-        child: const Icon(Icons.arrow_forward_outlined),
-      ),
 
     );
   }
 
-  Widget _buildListItem(int index) {
+  Widget _buildGoogleLoginButton() {
     return InkWell(
       onTap: () {
-        functionalCategoriesRegistrationPageController.selectedItemIndex(index.toString());
-      },
 
-      child:  Obx(() => Container(
+      },
+      child:  Container(
         decoration: BoxDecoration(
-            color:index.toString()==functionalCategoriesRegistrationPageController.selectedItemIndex.value?
-            buttonBgColor: Colors.transparent,
-            borderRadius: BorderRadius.circular(5.0),
+            color: Colors.transparent,
+            borderRadius: BorderRadius.circular(7.0),
             border: Border.all(color:dropDownBorderColor,
                 width: 1
             )
 
         ),
 
-        padding: EdgeInsets.only(left: 15,right: 15,top: 10,bottom: 10),
-        margin: EdgeInsets.only(left: 0,right: 0,top: 5,bottom: 5),
-
-        alignment: Alignment.centerLeft,
-        child:   Text(
-          "Jobs no $index",
-          textAlign: TextAlign.left,
-          style: TextStyle(
-            fontFamily: 'PT-Sans',
-            fontSize: 15,
-            fontWeight: FontWeight.normal,
-            color: index.toString()==functionalCategoriesRegistrationPageController.selectedItemIndex.value? Colors.white: buttonBgColor,
-
-
-          ),
+        padding: EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 10),
+        height: 45,
+        alignment: Alignment.center,
+        child:  Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              "assets/images/icon_google.png",
+              width: 18,
+              height: 18,
+              fit: BoxFit.fill,
+            ),
+            SizedBox(width: 12,),
+            Text(
+              "Import from Google",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontFamily: 'PT-Sans',
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+                color: levelTextColor,
+              ),
+            )
+          ],
         ),
-      )),
+      ),
+    );
+  }
+
+  Widget _buildFacebookLoginButton() {
+    return InkWell(
+      onTap: () {
+
+      },
+
+      child: Container(
+        decoration: BoxDecoration(
+            color: Colors.transparent,
+            borderRadius: BorderRadius.circular(7.0),
+            border: Border.all(color:dropDownBorderColor,
+                width: 1
+            )
+
+        ),
+
+        padding: EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 10),
+        height: 45,
+        alignment: Alignment.center,
+        child:  Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              "assets/images/icon_facebook.png",
+              width: 18,
+              height: 18,
+              fit: BoxFit.fill,
+              color: buttonBgColor,
+            ),
+            SizedBox(width: 12,),
+            Text(
+              "Import from Facebook",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontFamily: 'PT-Sans',
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+                color: levelTextColor,
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildEnterInformationButton() {
+    return InkWell(
+      onTap: () {
+
+        if(functionalCategoriesRegistrationPageController.selectedSkilledItemValue!=""){
+
+          Get.to(() => FunctionalCategoriesRegistrationScreenPage2(),
+              arguments: {
+                "skillListItem": functionalCategoriesRegistrationPageController.selectedSkilledItemValue.toString(),
+              }
+          )?.then((value) => Get.delete<FunctionalCategoriesRegistrationPageController2>());
+
+        }
+        else{
+          showToastShort("Please Select Skill");
+        }
+
+      },
+
+      child: Container(
+        decoration: BoxDecoration(
+            color: boldTextColor,
+            borderRadius: BorderRadius.circular(7.0),
+            border: Border.all(color:boldTextColor,
+                width: 1
+            )
+
+        ),
+
+        padding: EdgeInsets.only(left: 25,right: 25,top: 10,bottom: 10),
+        height: 45,
+        alignment: Alignment.center,
+        child:  Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+
+            Text(
+              "Enter your information",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontFamily: 'PT-Sans',
+                fontSize: 15,
+                fontWeight: FontWeight.w500,
+                color: Colors.white,
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 

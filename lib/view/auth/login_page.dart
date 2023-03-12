@@ -5,8 +5,10 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../controller/functional/functional_registration_page_controller1.dart';
 import '../../controller/login_page_controller.dart';
 import '../../static/Colors.dart';
+import 'functional_reg/functional_categories_page1.dart';
 
 
 class LogInScreenPage extends StatelessWidget {
@@ -225,6 +227,11 @@ class LogInScreenPage extends StatelessWidget {
                                               child: InkWell(
                                                 onTap: (){
 
+                                                  Get.to(() => FunctionalCategoriesRegistrationScreenPage1(),
+                                                      arguments: {
+                                                        "skillListItem": "",
+                                                      }
+                                                  )?.then((value) => Get.delete<FunctionalCategoriesRegistrationPageController1>());
 
 
                                                 },

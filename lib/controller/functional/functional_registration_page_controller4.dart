@@ -7,16 +7,16 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 
-import '../../view/common/toast.dart';
-import '../api_service/api_service.dart';
-import '../data_base/share_pref/sharePreferenceDataSaveName.dart';
-import '../view/common/loading_dialog.dart';
+import '../../../view/common/toast.dart';
+import '../../api_service/api_service.dart';
+import '../../data_base/share_pref/sharePreferenceDataSaveName.dart';
+import '../../view/common/loading_dialog.dart';
 
 class  FunctionalCategoriesRegistrationPageController4 extends GetxController {
 
 
   var userToken="".obs;
-  var userName="".obs;
+
 
 
 
@@ -31,12 +31,24 @@ class  FunctionalCategoriesRegistrationPageController4 extends GetxController {
   var phoneValidationError="".obs;
 
 
-  final userNameController = TextEditingController().obs;
+
   final userMobileNumberController = TextEditingController().obs;
   final userEmailController = TextEditingController().obs;
 
+  dynamic argumentData = Get.arguments;
+  var selectedSkilledItemValue="".obs;
+  var userName="".obs;
+  var selectedGenderValue="".obs;
+  var userEmailValue="".obs;
+  var userPhoneValue="".obs;
+
+
   @override
   void onInit() {
+
+    selectedSkilledItemValue(argumentData["skillListItem"].toString());
+    userName(argumentData["userName"].toString());
+    selectedGenderValue(argumentData["userGender"].toString());
 
     super.onInit();
   }

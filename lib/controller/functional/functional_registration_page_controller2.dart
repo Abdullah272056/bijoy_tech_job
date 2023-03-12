@@ -4,13 +4,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
-
-import '../../view/common/toast.dart';
-import '../api_service/api_service.dart';
-import '../data_base/share_pref/sharePreferenceDataSaveName.dart';
-import '../view/common/loading_dialog.dart';
 
 class  FunctionalCategoriesRegistrationPageController2 extends GetxController {
 
@@ -27,9 +21,12 @@ class  FunctionalCategoriesRegistrationPageController2 extends GetxController {
   var indicatorPercent=.25.obs;
 
   final userNameController = TextEditingController().obs;
-
+  dynamic argumentData = Get.arguments;
+  var selectedSkilledItemValue="".obs;
   @override
   void onInit() {
+
+    selectedSkilledItemValue(argumentData["skillListItem"].toString());
 
     super.onInit();
   }

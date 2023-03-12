@@ -6,7 +6,9 @@ import 'package:get_storage/get_storage.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../static/Colors.dart';
+import '../controller/login_page_controller.dart';
 import '../controller/search_job_page_controller.dart';
+import 'auth/login_page.dart';
 
 class SearchJobScreenPage extends StatelessWidget {
   final searchJobPageController = Get.put(SearchJobPageController());
@@ -65,7 +67,15 @@ class SearchJobScreenPage extends StatelessWidget {
                                                         padding: EdgeInsets.only(left: 5,right: 5,bottom: 30),
                                                         child: InkWell(
                                                           onTap: (){
-                                                            showToastShort("asdf");
+
+
+                                                            Get.to(() => LogInScreenPage(),
+                                                                arguments: {
+                                                                  "skillListItem": "",
+                                                                }
+                                                            )?.then((value) => Get.delete<LoginPageController>());
+
+
                                                           },
                                                           child: Image.asset(
                                                             "assets/images/icon_profile_user.png",
