@@ -11,14 +11,15 @@ import '../../../controller/functional/functional_registration_page_controller.d
 import '../../../controller/functional/functional_registration_page_controller1.dart';
 import '../../../controller/login_page_controller.dart';
 import '../../../controller/registration_type_select_page_controller.dart';
+import '../../../controller/special/special_registration_page_controller.dart';
 import '../../../static/Colors.dart';
 import '../../../static/text.dart';
 import '../functional_reg/functional_categories_page1.dart';
 
 
 class SpecialCategoriesRegistrationScreenPage extends StatelessWidget {
-  final functionalCategoriesRegistrationPageController =
-      Get.put(FunctionalCategoriesRegistrationPageController());
+  final specialCategoriesRegistrationPageController =
+      Get.put(SpecialCategoriesRegistrationPageController());
   var width;
   var height;
 
@@ -102,7 +103,7 @@ class SpecialCategoriesRegistrationScreenPage extends StatelessWidget {
                                                       animation: true,
                                                       lineHeight: 5.0,
                                                       animationDuration: 1000,
-                                                      percent: functionalCategoriesRegistrationPageController.indicatorPercent.value,
+                                                      percent: specialCategoriesRegistrationPageController.indicatorPercent.value,
                                                       //  center: const Text("10%"),
                                                       barRadius: const Radius.circular(2.5),
                                                       fillColor:Colors.transparent,
@@ -223,11 +224,11 @@ class SpecialCategoriesRegistrationScreenPage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
 
-          if(functionalCategoriesRegistrationPageController.selectedSkilledItemValue!=""){
+          if(specialCategoriesRegistrationPageController.selectedSkilledItemValue!=""){
             Get.to(() => FunctionalCategoriesRegistrationScreenPage1(),
                 arguments: {
 
-                  "skillListItem": functionalCategoriesRegistrationPageController.selectedSkilledItemValue.toString(),
+                  "skillListItem": specialCategoriesRegistrationPageController.selectedSkilledItemValue.toString(),
 
                 }
             )?.then((value) => Get.delete<FunctionalCategoriesRegistrationPageController1>());
@@ -249,13 +250,13 @@ class SpecialCategoriesRegistrationScreenPage extends StatelessWidget {
   Widget _buildListItem(int index) {
     return InkWell(
       onTap: () {
-        functionalCategoriesRegistrationPageController.selectedSkilledItemValue("অপারেটর"+index.toString());
-        functionalCategoriesRegistrationPageController.selectedItemIndex(index.toString());
+        specialCategoriesRegistrationPageController.selectedSkilledItemValue("অপারেটর"+index.toString());
+        specialCategoriesRegistrationPageController.selectedItemIndex(index.toString());
       },
 
       child:  Obx(() => Container(
         decoration: BoxDecoration(
-            color:index.toString()==functionalCategoriesRegistrationPageController.selectedItemIndex.value?
+            color:index.toString()==specialCategoriesRegistrationPageController.selectedItemIndex.value?
             buttonBgColor: Colors.transparent,
             borderRadius: BorderRadius.circular(5.0),
             border: Border.all(color:dropDownBorderColor,
@@ -276,7 +277,7 @@ class SpecialCategoriesRegistrationScreenPage extends StatelessWidget {
             fontFamily: 'PT-Sans',
             fontSize: 15,
             fontWeight: FontWeight.normal,
-            color: index.toString()==functionalCategoriesRegistrationPageController.selectedItemIndex.value? Colors.white: buttonBgColor,
+            color: index.toString()==specialCategoriesRegistrationPageController.selectedItemIndex.value? Colors.white: buttonBgColor,
 
           ),
         ),
