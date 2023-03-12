@@ -1,10 +1,13 @@
+import 'package:bijoy_tech_job/view/auth/specialed_reg/special_categories_page5.dart';
 import 'package:bijoy_tech_job/view/common/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import '../../../controller/functional/functional_registration_page_controller5.dart';
 import '../../../controller/special/special_registration_page_controller4.dart';
+import '../../../controller/special/special_registration_page_controller5.dart';
 import '../../../static/Colors.dart';
+import '../../../static/text.dart';
 import '../functional_reg/functional_categories_page5.dart';
 
 
@@ -119,6 +122,7 @@ class SpecialCategoriesRegistrationScreenPage4 extends StatelessWidget {
                                       ],
                                     ),
 
+
                                     const SizedBox(height: 20,),
 
                                     _buildCountryRegionInput(),
@@ -139,7 +143,37 @@ class SpecialCategoriesRegistrationScreenPage4 extends StatelessWidget {
                                             ),
 
 
+                                            Row(
+                                              children: [
+                                                Expanded(child: Container(
+                                                  color: smallTextColor,
+                                                  height: 1,
+                                                )),
+                                                Container(
+                                                  margin: EdgeInsets.only(left: 12,right: 12,top: 25,bottom: 25),
+                                                  child:  Text(
+                                                    "OR",
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                      fontFamily: 'PT-Sans',
+                                                      fontSize: 15,
+                                                      fontWeight: FontWeight.normal,
+                                                      color: smallTextColor,
+                                                    ),
+                                                  ),
+                                                ),
+                                                Expanded(child: Container(
+                                                  color: smallTextColor,
+                                                  height: 1,
+                                                ))
+                                              ],
+                                            ),
 
+                                            userInput(
+                                              userInputController: SpecialCategoriesRegistrationPageController.userEmailController.value,
+                                              hintTitle: 'ইমেল', keyboardType:TextInputType.text,
+                                              //  iconData: Icons.person
+                                            ),
 
 
                                           ],
@@ -174,8 +208,8 @@ class SpecialCategoriesRegistrationScreenPage4 extends StatelessWidget {
                                                 right: 5,
                                                 bottom: 00,
                                                 top: 20),
-                                            child: const Text(
-                                              "For any help",
+                                            child:  Text(
+                                              helpTextBangla,
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
                                                 fontFamily: 'PT-Sans',
@@ -192,13 +226,14 @@ class SpecialCategoriesRegistrationScreenPage4 extends StatelessWidget {
                                         MainAxisAlignment.center,
                                         children: [
                                           Container(
-                                            padding: EdgeInsets.only(
+                                            padding: const EdgeInsets.only(
                                                 left: 0,
                                                 right: 5,
                                                 bottom: 20,
-                                                top: 5),
-                                            child: Text(
-                                              "call at 1679",
+                                                top: 5
+                                            ),
+                                            child: const Text(
+                                              helpPhoneNumberBangla,
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
                                                 fontFamily: 'PT-Sans',
@@ -239,16 +274,17 @@ class SpecialCategoriesRegistrationScreenPage4 extends StatelessWidget {
             String  userPhone=SpecialCategoriesRegistrationPageController.userMobileNumberController.value.text;
 
 
-            Get.to(() => FunctionalCategoriesRegistrationScreenPage5(),
+            Get.to(() => SpecialCategoriesRegistrationScreenPage5(),
                 arguments: {
 
                   "skillListItem": SpecialCategoriesRegistrationPageController.selectedSkilledItemValue.toString(),
                   "userName": SpecialCategoriesRegistrationPageController.userName.toString(),
                   "userGender": SpecialCategoriesRegistrationPageController.userName.toString(),
+                  "userEmail": userEmail,
                   "userPhone": userPhone,
 
                 }
-            )?.then((value) => Get.delete<FunctionalCategoriesRegistrationPageController5>());
+            )?.then((value) => Get.delete<SpecialCategoriesRegistrationPageController5>());
 
 
           }
@@ -331,8 +367,6 @@ class SpecialCategoriesRegistrationScreenPage4 extends StatelessWidget {
     );
   }
 
-
-
   Widget userInputPhone({
     required TextEditingController userInputController,
     required String hintTitle,
@@ -351,6 +385,58 @@ class SpecialCategoriesRegistrationScreenPage4 extends StatelessWidget {
         }
 
 
+        return null;
+      },
+      controller: userInputController,
+      textInputAction: TextInputAction.next,
+      autocorrect: false,
+      enableSuggestions: false,
+      cursorColor: textColor,
+      style: TextStyle(
+          color: textColor
+      ),
+      autofocus: false,
+
+      decoration:  InputDecoration(
+          contentPadding:  EdgeInsets.only(left: 17, right: 17,top: height/46,bottom:height/46 ),
+          // contentPadding:EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
+          labelText: hintTitle,
+          labelStyle: const TextStyle(
+            color:levelTextColor,
+          ),
+          focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(6.0)),
+              borderSide: BorderSide(color: buttonBgColor,width: 2)
+          ),
+          border: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(6.0)),
+              borderSide: BorderSide(color: dropDownBorderColor,width: 1)
+          ),
+          errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(6.0)),
+              borderSide: BorderSide(color: Colors.red, width: 2))),
+
+
+
+      keyboardType: keyboardType,
+    );
+  }
+
+  Widget userInput({
+    required TextEditingController userInputController,
+    required String hintTitle,
+    required TextInputType keyboardType,
+    IconData? iconData,
+  }){
+    return TextFormField (
+      validator: (values){
+
+        if (values!.isEmpty) {
+          return 'ইমেল খালি রাখা যাবে না';
+        } else if (!values.contains('@')) {
+          return 'ইমেল সঠিক নয়';
+        } else if (SpecialCategoriesRegistrationPageController.emailValidationError.value!="") {
+          return SpecialCategoriesRegistrationPageController.emailValidationError.value;
+        }
         return null;
       },
       controller: userInputController,
