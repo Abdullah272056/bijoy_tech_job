@@ -9,6 +9,7 @@ import 'package:bijoy_tech_job/view/auth/functional_reg/functional_categories_pa
 import 'package:bijoy_tech_job/view/auth/functional_reg/functional_registration_verify.dart';
 import 'package:bijoy_tech_job/view/auth/registration_type_select_page.dart';
 import 'package:bijoy_tech_job/view/auth/specialed_reg/special_categories_registration_page.dart';
+import 'package:bijoy_tech_job/view/auth/specialed_reg/special_registration_verify.dart';
 
 
 import 'package:bijoy_tech_job/view/search_job_page.dart';
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return  GetMaterialApp(
         debugShowCheckedModeBanner: false,
-       home:SpecialCategoriesRegistrationScreenPage()
+       home:SpecialRegistrationVerifyScreenPage()
 
        // DashBoardPageScreen()
     );

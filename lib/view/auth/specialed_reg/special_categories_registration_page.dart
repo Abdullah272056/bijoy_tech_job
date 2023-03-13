@@ -20,8 +20,9 @@ import '../functional_reg/functional_categories_page1.dart';
 
 
 class SpecialCategoriesRegistrationScreenPage extends StatelessWidget {
-  final specialCategoriesRegistrationPageController =
-      Get.put(SpecialCategoriesRegistrationPageController());
+
+  final specialCategoriesRegistrationPageController = Get.put(SpecialCategoriesRegistrationPageController());
+
   var width;
   var height;
 
@@ -286,6 +287,8 @@ class SpecialCategoriesRegistrationScreenPage extends StatelessWidget {
       )),
     );
   }
+
+
 
 
 }

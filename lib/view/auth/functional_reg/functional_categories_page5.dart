@@ -30,7 +30,7 @@ class FunctionalCategoriesRegistrationScreenPage5 extends StatelessWidget {
     return Scaffold(
      // resizeToAvoidBottomInset: false,
       body: SafeArea(
-        child: Container(
+        child: Container   (
             decoration: BoxDecoration(
               color: bgColor,
             ),
@@ -38,6 +38,7 @@ class FunctionalCategoriesRegistrationScreenPage5 extends StatelessWidget {
               // mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Expanded(
+
                     child:  CustomScrollView(
                       slivers: [
                         SliverFillRemaining(
@@ -284,8 +285,6 @@ class FunctionalCategoriesRegistrationScreenPage5 extends StatelessWidget {
                         ),
                       ],
                     )
-
-
 
 
                 ),
