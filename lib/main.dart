@@ -11,6 +11,7 @@ import 'package:bijoy_tech_job/view/auth/registration_type_select_page.dart';
 import 'package:bijoy_tech_job/view/auth/specialed_reg/special_categories_page4.dart';
 import 'package:bijoy_tech_job/view/auth/specialed_reg/special_categories_page6.dart';
 import 'package:bijoy_tech_job/view/auth/specialed_reg/special_categories_page7.dart';
+import 'package:bijoy_tech_job/view/auth/specialed_reg/special_categories_page8.dart';
 import 'package:bijoy_tech_job/view/auth/specialed_reg/special_categories_registration_page.dart';
 import 'package:bijoy_tech_job/view/auth/specialed_reg/special_registration_verify.dart';
 
@@ -40,7 +41,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return  GetMaterialApp(
         debugShowCheckedModeBanner: false,
-       home:SpecialCategoriesRegistrationScreenPage7()
+
+       home:SpecialCategoriesRegistrationScreenPage8()
 
        // DashBoardPageScreen()
     );
